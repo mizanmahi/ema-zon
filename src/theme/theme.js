@@ -21,6 +21,6 @@ export const theme = createTheme({
    },
 
    typography: {
-      fontFamily: ['Inter', 'Roboto', 'sans-serif'].join(','),
+      fontFamily: ['Lato', 'Roboto', 'sans-serif'].join(','),
    },
 });
