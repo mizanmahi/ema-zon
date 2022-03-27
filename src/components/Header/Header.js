@@ -40,7 +40,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
    },
 }));
 
-const Header = ({ name }) => {
+const Header = ({ setIsCartDrawerOpen }) => {
    return (
       <HeaderWrapper>
          <Container maxWidth='lg'>
@@ -50,7 +50,12 @@ const Header = ({ name }) => {
                   <a href='/'>Home</a>
                   <a href='/manage-inventory'>Manage Inventory</a>
                   <a href='/order-review'>Order Review</a>
-                  <IconButton aria-label='cart' color='secondary' sx={{ml: 1}}>
+                  <IconButton
+                     aria-label='cart'
+                     color='secondary'
+                     sx={{ ml: 1 }}
+                     onClick={() => setIsCartDrawerOpen(true)}
+                  >
                      <StyledBadge badgeContent={4} color='secondary'>
                         <ShoppingCartIcon sx={{ fontSize: '30px' }} />
                      </StyledBadge>

@@ -1,13 +1,16 @@
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import CustomDrawer from '../Custom/Drawer/Drawer';
+import Loader from '../Loader/Loader';
 import Product from '../Product/Product';
+import Cart from '../Cart/Cart';
 
 const ShopWrapper = styled(Box)(({ theme }) => ({
    margin: '2rem auto',
 }));
 
-const Shop = () => {
+const Shop = ({ isCartDrawerOpen, setIsCartDrawerOpen }) => {
    const [products, setProduct] = useState([]);
    const [productsLoading, setProductsLoading] = useState(true);
    const [productsError, setProductsError] = useState(false);
@@ -23,7 +26,7 @@ const Shop = () => {
             setProductsLoading(false);
          })
          .catch((err) => {
-            setProductsError(err.message);
+            setProductsError('Failed to fetch data, Try again!');
             setProductsLoading(false);
          });
    }, []);
@@ -32,9 +35,15 @@ const Shop = () => {
       <ShopWrapper>
          <Container maxWidth='lg'>
             {productsLoading ? (
-               <h2>Loading ...</h2>
+               <Loader />
             ) : productsError ? (
-               <h2>{productsError}</h2>
+               <Typography
+                  color='error'
+                  variant='h6'
+                  sx={{ textAlign: 'center' }}
+               >
+                  {productsError}
+               </Typography>
             ) : (
                <Grid
                   container
@@ -49,6 +58,17 @@ const Shop = () => {
                   ))}
                </Grid>
             )}
+
+            <CustomDrawer
+               open={isCartDrawerOpen}
+               onClose={() => setIsCartDrawerOpen(false)}
+               anchor='right'
+               drawerStyles={{
+                  background: '#FFE0B3',
+               }}
+            >
+               <Cart />
+            </CustomDrawer>
          </Container>
       </ShopWrapper>
    );
