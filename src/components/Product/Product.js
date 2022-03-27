@@ -33,8 +33,9 @@ const AddToCartButton = styled(Button)(({ theme }) => ({
    },
 }));
 
-const Product = ({ product }) => {
+const Product = ({ product, handleAddToCart }) => {
    const { name, img, seller, price, ratings } = product;
+   
    return (
       <ProductWrapper>
          <img src={img} alt='' />
@@ -50,7 +51,11 @@ const Product = ({ product }) => {
          <Typography variant='body1' sx={{}}>
             Rating: {ratings} stars
          </Typography>
-         <AddToCartButton endIcon={<ShoppingCartIcon />} fullWidth>
+         <AddToCartButton
+            endIcon={<ShoppingCartIcon />}
+            fullWidth
+            onClick={() => handleAddToCart(product)}
+         >
             Add To Cart
          </AddToCartButton>
       </ProductWrapper>

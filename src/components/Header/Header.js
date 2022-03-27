@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Container, Tooltip } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import logo from '../../images/Logo.svg';
 import Badge from '@mui/material/Badge';
@@ -50,16 +50,19 @@ const Header = ({ setIsCartDrawerOpen }) => {
                   <a href='/'>Home</a>
                   <a href='/manage-inventory'>Manage Inventory</a>
                   <a href='/order-review'>Order Review</a>
-                  <IconButton
-                     aria-label='cart'
-                     color='secondary'
-                     sx={{ ml: 1 }}
-                     onClick={() => setIsCartDrawerOpen(true)}
-                  >
-                     <StyledBadge badgeContent={4} color='secondary'>
-                        <ShoppingCartIcon sx={{ fontSize: '30px' }} />
-                     </StyledBadge>
-                  </IconButton>
+
+                  <Tooltip title='My Cart' placement='bottom'>
+                     <IconButton
+                        aria-label='cart'
+                        color='secondary'
+                        sx={{ ml: 1 }}
+                        onClick={() => setIsCartDrawerOpen(true)}
+                     >
+                        <StyledBadge badgeContent={4} color='secondary'>
+                           <ShoppingCartIcon sx={{ fontSize: '30px' }} />
+                        </StyledBadge>
+                     </IconButton>
+                  </Tooltip>
                </Menu>
             </Flex>
          </Container>

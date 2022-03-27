@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
 
 export default function CustomDrawer({
    children,
@@ -22,15 +23,18 @@ export default function CustomDrawer({
                   position: 'relative',
                   height: '100vh',
                   ...drawerStyles,
-                  '& > svg': {
-                     position: 'absolute',
-                     top: 5,
-                     right: 5,
-                     cursor: 'pointer',
-                  },
                }}
             >
-               <CloseIcon onClick={onClose} />
+               <IconButton
+                  sx={{
+                     position: 'absolute',
+                     left: 1,
+                     top: 1,
+                     cursor: 'pointer',
+                  }}
+               >
+                  <CloseIcon onClick={onClose} />
+               </IconButton>
                {children}
             </Box>
          </Drawer>
